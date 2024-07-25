@@ -5,7 +5,9 @@ const AuthGuard = ({ children }) => {
     const isAuthenticated = localStorage.getItem('login');
 
     if (!isAuthenticated) {
+       
         return <Navigate to="/Login" />;
+        
     }
 
     return children;

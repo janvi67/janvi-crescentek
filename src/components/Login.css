@@ -39,6 +39,9 @@ body {
     border: none;
     background: #f1f1f1;
 }
+.login-form input[type="email"]{
+    margin-left: 54px;
+}
 
 .login-form input[type="email"]:focus,
 .login-form input[type="password"]:focus {
@@ -55,6 +58,9 @@ body {
     cursor: pointer;
     font-size: 16px;
     margin-top: 10px;
+    width: 60%;
+   
+   
 }
 
 .login-form button:hover {
@@ -87,7 +93,11 @@ span.psw {
     float: right;
     padding-top: 16px;
 }
-
+.Toastify__toast--success {
+    border: 1px solid #3A9EA5 !important;
+    border-radius: 50px !important;
+    background: #F0F9FA !important;
+  }
 @media screen and (max-width: 400px) {
     .login-container {
         width: 100%;

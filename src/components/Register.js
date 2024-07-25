@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import './Register.css';
 import { useNavigate } from 'react-router-dom';
+import "react-toastify/dist/ReactToastify.css";
+import { toast, ToastContainer } from "react-toastify";
+
 import axios from 'axios';
 
 function SignUp() {
@@ -22,23 +25,22 @@ function SignUp() {
 
   const handleSignUp = async () => {
     try {
-      const response = await axios.post('http://0f2a-2402-a00-192-1840-24d9-cb9f-ea0c-e56.ngrok-free.app/user/create', {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/user/create`, {
        first_name,
         last_name,
         email,
-        password},{
-          headers:{
-          
-            "ngrok-skip-browser-warning": "69420",
-          },
-      });
+        password});
       console.log("response",response.data)
       
       if (response.data) {
-        navigate('/login');
+        toast.success("SignUp Successful", { autoClose: 2000 ,position:"top-center"}); 
+        setTimeout(() => {
+          navigate("/Login");
+        }, 4000); 
       }
     } catch (err) {
-      setError('Signup failed');
+      toast.error("SignUp failed", { autoClose: 2000 ,position:"top-center"});
+      
     }
   };
 
@@ -58,6 +60,7 @@ function SignUp() {
 
   return (
     <div>
+    <ToastContainer/>
       <form className='main' onSubmit={handleSubmit}>
         <div className='container'>
           <h1>Register</h1>

@@ -1,0 +1,35 @@
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #c2bebe;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+  .logout-container {
+    position: absolute;
+    top: 30px; /* Adjust this value as needed */
+    right: 50px; /* Adjust this value as needed */
+}
+
+.logout {
+    background-color: #f44336; /* Adjust the background color as needed */
+    color: white; /* Adjust the text color as needed */
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px; /* Optional: Add rounded corners */
+    transition: background-color 0.3s; /* Optional: Add a transition effect */
+}
+
+.logout:hover {
+    background-color: #d32f2f; /* Adjust the hover background color as needed */
+}
