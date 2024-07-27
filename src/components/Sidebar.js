@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
+import axios from 'axios';
 import {
     FaTh,
     FaBars,
-    FaUserAlt,
+    FaUsers,
     FaRegChartBar
 } from "react-icons/fa";
+import { PiUserListFill } from "react-icons/pi";
 import { NavLink } from 'react-router-dom';
 import './Sidebar.css';
 
@@ -19,22 +21,60 @@ const Sidebar = ({ children }) => {
             icon: <FaTh />
         },
         {
-            path: "/UserData",
-            name: "User Data",
-            icon: <FaUserAlt />
+            path: "/UsersData",
+            name: "Users Data",
+            icon: <FaUsers />
         },
         {
-            path: "/EmployeeList",
+            path: "/EmployeesList",
             name: "Employee Data",
-            icon: <FaRegChartBar />
+            icon: <PiUserListFill />
         }
     ];
 
+    const [first_name, setFirstname] = useState('');
+
+    useEffect(() => {
+        const fetchUsername = async () => {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                console.error('No token found');
+                return;
+            }
+
+            try {
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/user/details`, {
+                    headers: {
+                        'Authorization': `${token}`,
+                        "ngrok-skip-browser-warning": "69420",
+                    }
+                });
+
+                if (response.status === 200) {
+                  
+                    const userData = response.data.data; 
+                    if (userData && userData.first_name) {
+                        setFirstname(userData.first_name);
+                       
+                    } else {
+                        console.error('First name not found in response', userData);
+                    }
+                } else {
+                    console.error('Failed to fetch username, status:', response.status);
+                }
+            } catch (error) {
+                console.error('Failed to fetch username', error);
+            }
+        };
+
+        fetchUsername();
+    }, []);
+
     return (
-        <div className="containerr">
+        <div className="">
             <div style={{ width: isOpen ? "240px" : "50px" }} className="sidebar">
                 <div className="top_section">
-                    <h1 style={{ display: isOpen ? "block" : "none" }} className="logo">Logo</h1>
+                    <h1 style={{ display: isOpen ? "block" : "none" }} className="logo">{first_name}</h1>
                     <div style={{ marginLeft: isOpen ? "50px" : "0px" }} className="bars">
                         <FaBars onClick={toggle} />
                     </div>
@@ -48,7 +88,7 @@ const Sidebar = ({ children }) => {
                     ))
                 }
             </div>
-            <main>{children}</main>
+            <main >{children}</main>
         </div>
     );
 };

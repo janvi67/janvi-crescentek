@@ -2,12 +2,14 @@
     margin-right: 10px;
 }
 .btnCreate-container {
-    position: absolute;
-    top: 40%; /* Adjust this value as needed */
-    right: 30%; /* Adjust this value as needed */
-    position: absolute;
+  
+    margin-left: 760%; 
+   
 }
 
+.tborder{
+    border: none;
+}
 .btn-create {
     background-color: #6bb87a; /* Adjust the background color as needed */
     color: white; /* Adjust the text color as needed */
@@ -51,11 +53,13 @@
 .btn-create {
     background-color: #007bff;
     color: white;
-    border: none;
+    /* border: none;
     padding: 10px 20px;
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
+     */
+ 
 }
 
 .btn-create:hover {
@@ -84,7 +88,7 @@
 }
 
 .btn-edit:hover {
-    color: #868c87;
+    color: #3c8648;
 }
 
 .btn-delete {

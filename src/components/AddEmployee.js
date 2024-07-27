@@ -3,7 +3,9 @@ import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
 import axios from 'axios';
-import './AddEmployee.css'; // Import the CSS file
+import './AddEmployee.css'; 
+import NavBar from "./NavBar";
+import Sidebar from "./Sidebar";
 
 function AddEmployee({ onCancel }) {
     const [name, setName] = useState("");
@@ -34,7 +36,7 @@ function AddEmployee({ onCancel }) {
             if (response.data) {
                 toast.success("Employee creation successful", { autoClose: 2000, position: "top-center" });
                 setTimeout(() => {
-                    navigate("/EmployeeList"); 
+                    navigate("/EmployeesList"); 
                 }, 2000); 
             }
         } catch (err) {
@@ -49,8 +51,11 @@ function AddEmployee({ onCancel }) {
 
     return (
         <div className="add-employee-container">
+        <NavBar/>
+     <Sidebar>
             <ToastContainer />
             <h2>Add Employee</h2>
+         
             <form onSubmit={handleSubmit} className="add-employee-form">
                 <div className="form-group">
                     <label>Name:</label>
@@ -76,7 +81,9 @@ function AddEmployee({ onCancel }) {
                     <button type="submit" className="btn-submit">Submit</button>
                     <button type="button" className="btn-cancel" onClick={onCancel}>Cancel</button>
                 </div>
+               
             </form>
+        </Sidebar>
         </div>
     );
 }

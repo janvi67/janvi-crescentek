@@ -4,6 +4,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
 import './EditEmployee.css';
+import NavBar from './NavBar';
+import Sidebar from './Sidebar';
 
 function EditEmployee() {
     const { id } = useParams();
@@ -70,7 +72,7 @@ function EditEmployee() {
             if (response.status === 200) {
                 toast.success("Employee updated successfully.", { autoClose: 2000, position: "top-center" });
                 setTimeout(() => {
-                    navigate("/EmployeeList");
+                    navigate("/EmployeesList");
                 }, 2000);
             }
         } catch (error) {
@@ -85,6 +87,8 @@ function EditEmployee() {
 
     return (
         <div className="edit-employee-container">
+        <NavBar/>
+        <Sidebar>
             <ToastContainer />
             <h2>Edit Employee</h2>
             <form onSubmit={handleSubmit} className="edit-employee-form">
@@ -113,6 +117,7 @@ function EditEmployee() {
                     <button type="button" className="btn-cancel" onClick={() => navigate("/EmployeeList")}>Cancel</button>
                 </div>
             </form>
+            </Sidebar>
         </div>
     );
 }

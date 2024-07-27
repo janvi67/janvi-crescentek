@@ -1,22 +1,16 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { clearAuthData } from './Auth';
 import './UserData.css';
 import Sidebar from './Sidebar';
+import NavBar from './NavBar';
 
-function UserData() {
-    const navigate = useNavigate();
+function UsersData() {
+   
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const handleLogout = () => {
-        localStorage.removeItem('login');
-        localStorage.removeItem('token');
-        clearAuthData();
-        navigate('/Login');
-    };
+    
 
     useEffect(() => {
         const fetchData = async () => {
@@ -57,11 +51,10 @@ function UserData() {
     return (
         
         <div>
+        <NavBar/>
         <Sidebar>
-              <div className="logout-container">
-                <button className="logout" onClick={handleLogout}>Logout</button>
-            </div>
-            <h1>User Data</h1><br></br><br></br>
+              
+            <h1>Users Data</h1><br></br><br></br>
             <table>
                 <thead>
                     <tr>
@@ -85,4 +78,4 @@ function UserData() {
     );
 }
 
-export default UserData;
+export default UsersData;

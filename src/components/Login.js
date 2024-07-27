@@ -41,7 +41,7 @@ function Login() {
 
         toast.success("Login Successful", { autoClose: 2000, position: "top-center" });
         setTimeout(() => {
-          navigate("/UserData");
+          navigate("/UsersData");
         }, 4000);
       } else {
         toast.error("Login failed", { autoClose: 2000 });
