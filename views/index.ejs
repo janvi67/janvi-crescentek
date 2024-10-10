@@ -12,8 +12,8 @@
 <body>
     <div class="p-10">
         <form action="/create" method="POST"> <!-- Set the action to your create route -->
-            <input type="text" name="title" class="block px-5 py-5 bg-zinc-800 w-72 rounded-md outline-none" placeholder="Enter name"  required>
-            <textarea name="details" class="block mt-5 px-5 py-5 resize-none bg-zinc-800 w-72 rounded-md outline-none" placeholder="Write your address "  required></textarea>
+            <input type="text" name="title" class="block text-white px-5 py-5 bg-zinc-800 w-72 rounded-md outline-none" placeholder="Enter name" class="name"  required>
+            <textarea name="details" class="block mt-5 px-5 py-5 text-white resize-none bg-zinc-800 w-72 rounded-md outline-none" placeholder="Write your address " class="details"  required></textarea>
             <input class="bg-blue-600 mt-5 rounded-md px-5 py-2" style="color: aliceblue;" type="submit" value="Create Task">
         </form>
 
@@ -22,7 +22,10 @@
                 <% files.forEach(function(val) { %>
                     <div class="task bg-zinc-800 w-72 mt-5 px-5 py-5 p-10">
                         <h1 class="text-white w-72 mt-5 text-3xl tracking-tighter"><%= val %></h1>
-                        <a class="text-blue-500 inline-block mt-3" href="#">Read more</a>
+                       <div class="flex justify-between mt-3 items-center">
+                        <a class="text-blue-500 inline-block" href="/file/<%=  val %>">Read more</a>
+                        <a class="text-zinc-600" href="/edit/<%=  val %>">Edit Filename</a>
+                       </div>
                     </div>
                 <% }); %>
             <% } else { %>
